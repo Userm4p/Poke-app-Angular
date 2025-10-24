@@ -29,7 +29,7 @@
 }
 
 .menu-toggle:hover {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .hamburger {
@@ -42,7 +42,7 @@
   letter-spacing: 1px;
   font-weight: bold;
   color: var(--foreground);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo .accent {
@@ -63,7 +63,9 @@
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(33, 40, 49, 0.07);
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
+  transition:
+    background 0.18s,
+    color 0.18s;
   outline: none;
   padding: 0.5rem 1rem;
 }
@@ -73,16 +75,20 @@
   color: #2d2d1d;
 }
 
+.greeting {
+  font-size: 1rem;
+  color: var(--foreground);
+}
 
 @media (max-width: 768px) {
   .navbar {
     padding: 0.5rem 1rem;
   }
-  
+
   .logo {
     font-size: 1.5rem;
   }
-  
+
   .logout {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;

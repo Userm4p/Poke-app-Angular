@@ -1,23 +1,23 @@
 <div class="login-container">
-    <h2>Iniciar sesión</h2>
-    <form (ngSubmit)="onLogin()">
-        <div>
-            <label for="user">Usuario:</label>
-            <input id="user" [(ngModel)]="username" name="username" required />
-            @if (submitted && validationMsg().user) {
-              <div class="error">{{ validationMsg().user }}</div>
-            }
-        </div>
-        <div>
-            <label for="password">Contraseña:</label>
-            <input id="password" [(ngModel)]="password" type="password" name="password" required />
-            @if (submitted && validationMsg().pass) {
-              <div class="error">{{ validationMsg().pass }}</div>
-            }
-        </div>
-        @if (submitted && validationMsg().auth) {
-          <div class="error">{{ validationMsg().auth }}</div>
-        }
-        <button type="submit">Entrar</button>
-    </form>
+  <h2>Iniciar sesión</h2>
+  <form (ngSubmit)="onLogin()">
+    <div class="form-group">
+      <label for="user">Usuario:</label>
+      <input id="user" [(ngModel)]="username" name="username" required />
+      @if (submitted && validationMsg().user) {
+        <div class="error">{{ validationMsg().user }}</div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="password">Contraseña:</label>
+      <input id="password" [(ngModel)]="password" type="password" name="password" required />
+      @if (submitted && validationMsg().pass) {
+        <div class="error">{{ validationMsg().pass }}</div>
+      }
+    </div>
+    @if (submitted && validationMsg().auth) {
+      <div class="error">{{ validationMsg().auth }}</div>
+    }
+    <button type="submit">Entrar</button>
+  </form>
 </div>

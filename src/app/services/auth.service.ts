@@ -22,7 +22,7 @@ export class AuthService {
   readonly isUser = computed(() => this._user()?.role === 'user');
 
   login(username: string, password: string): boolean {
-    const found = USERS.find(u => u.username === username && u.password === password);
+    const found = USERS.find((u) => u.username === username && u.password === password);
     if (found) {
       this._user.set(found);
       localStorage.setItem(this.storageKey, JSON.stringify(found));

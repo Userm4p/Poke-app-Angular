@@ -9,17 +9,20 @@ import { AuthService } from './services/auth.service';
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule, ThemeToggleComponent, LayoutComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('task_manager');
   protected readonly theme = signal(this.getStoredTheme());
 
-  constructor(private router: Router, protected auth: AuthService) {
+  constructor(
+    private router: Router,
+    protected auth: AuthService,
+  ) {
     this.applyTheme(this.theme());
   }
 
-  handleThemeChange(next: 'light'|'dark') {
+  handleThemeChange(next: 'light' | 'dark') {
     this.theme.set(next);
     this.applyTheme(next);
     localStorage.setItem('theme', next);

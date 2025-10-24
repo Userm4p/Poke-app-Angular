@@ -9,27 +9,30 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   username = '';
   password = '';
   loginError = false;
   submitted = false;
-  validationMsg = signal<{user?: string; pass?: string; auth?: string}>({});
+  validationMsg = signal<{ user?: string; pass?: string; auth?: string }>({});
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {}
 
   onLogin() {
     this.submitted = true;
     this.validationMsg.set({});
     let valid = true;
     if (!this.username.trim()) {
-      this.validationMsg.set({...this.validationMsg(), user: 'El usuario es requerido'});
+      this.validationMsg.set({ ...this.validationMsg(), user: 'El usuario es requerido' });
       valid = false;
     }
     if (!this.password.trim()) {
-      this.validationMsg.set({...this.validationMsg(), pass: 'La contraseña es requerida'});
+      this.validationMsg.set({ ...this.validationMsg(), pass: 'La contraseña es requerida' });
       valid = false;
     }
     if (!valid) return;
@@ -38,7 +41,7 @@ export class LoginComponent {
       this.router.navigate(['/dashboard']);
     } else {
       this.loginError = true;
-      this.validationMsg.set({...this.validationMsg(), auth: 'Usuario o contraseña incorrectos'});
+      this.validationMsg.set({ ...this.validationMsg(), auth: 'Usuario o contraseña incorrectos' });
     }
   }
 }

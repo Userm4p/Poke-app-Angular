@@ -1,11 +1,16 @@
 <nav class="navbar">
   <div class="navbar-left">
-    <button class="menu-toggle" (click)="onToggleMenu()" *ngIf="isLoggedIn">
-      <span class="hamburger">☰</span>
-    </button>
+    @if (isLoggedIn) {
+      <button class="menu-toggle" (click)="onToggleMenu()">
+        <span class="hamburger">☰</span>
+      </button>
+    }
     <div class="logo">Poke <span class="accent">App</span></div>
   </div>
-  @if (isLoggedIn) {
+  @if (isLoggedIn && userInfo) {
+    <span class="greeting">
+      Hola, <span class="username">{{ userInfo.username }}</span>
+    </span>
     <button class="logout" (click)="onLogout()">Cerrar sesión</button>
   }
 </nav>

@@ -1,7 +1,7 @@
 @if (isLoggedIn) {
   <aside class="sidebar" [class.open]="isOpen()">
     <nav class="sidebar-nav">
-      @for (item of menuItems; track item.route) {
+      @for (item of menuItems(); track item.route) {
         <button class="nav-item" (click)="navigateTo(item.route)">
           <span class="icon">{{ item.icon }}</span>
           <span class="label">{{ item.label }}</span>
