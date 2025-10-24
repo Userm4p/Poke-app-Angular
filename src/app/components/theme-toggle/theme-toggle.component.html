@@ -1,0 +1,17 @@
+<div class="theme-toggle">
+    <button class="toggle-btn" [class.active]="theme() === 'light'" (click)="setTheme('light')"
+        aria-label="Modo claro (sol)">
+        <svg width="26" height="26" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5" fill="#FFA500" />
+            <path
+                d="M12 3v2M12 19v2M3 12h2M19 12h2M5.636 5.636l1.414 1.414M16.95 16.95l1.414 1.415M5.636 18.364l1.414-1.415M16.95 7.05l1.415-1.414"
+                stroke="#FFA500" stroke-width="2" stroke-linecap="round" />
+        </svg>
+    </button>
+    <button class="toggle-btn" [class.active]="theme() === 'dark'" (click)="setTheme('dark')"
+        aria-label="Modo oscuro (luna)">
+        <svg width="26" height="26" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="#fff" stroke="#fff" stroke-width="2" />
+        </svg>
+    </button>
+</div>

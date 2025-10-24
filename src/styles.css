@@ -1,1 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --background: #fff;
+  --foreground: #222;
+  --primary: #007bff;
+  --error: #dc3545;
+  --secondary: #6c757d;
+  --ghost: #f8f9fa;
+  --yellow: #ffce31;
+  --dark: rgba(0,0,0,0.1);
+  --shadow: rgba(0,0,0,0.15);
+  --border-radius: 6px;
+}
+
+body[data-theme="dark"] {
+  --background: #1a1b1e;
+  --foreground: #f2f2f2;
+  --primary: #2979ff;
+  --secondary: #adb5bd;
+  --ghost: #2c2e33;
+  --error: #ff5252;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  margin: 0; padding: 0;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  transition: background 0.25s, color 0.25s;
+}
+
+button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #0056b3;
+}
+
+input {
+  border-radius: var(--border-radius);
+  border: 1px solid #aaa;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  outline: none;
+}
+input:focus {
+  border-color: var(--primary);
+}
+
+label {
+  font-size: 0.98rem;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+.error {
+  color: var(--error);
+}

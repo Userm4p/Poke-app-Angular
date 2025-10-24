@@ -1,0 +1,9 @@
+<div class="layout">
+  <app-navbar [isLoggedIn]="isLoggedIn" (logout)="onLogout()" (toggleMenu)="toggleSidebar()"></app-navbar>
+  <div class="main-content">
+    <app-sidebar [isLoggedIn]="isLoggedIn" [isOpen]="sidebarOpen"></app-sidebar>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
