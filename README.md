@@ -1,4 +1,4 @@
-# 🎮 Task Manager - Pokémon Application
+# Pokémon Application
 
 Una aplicación web moderna desarrollada con Angular que permite explorar y gestionar información de Pokémon. La aplicación incluye un sistema completo de autenticación, búsqueda de Pokémon, y una interfaz intuitiva para navegar por la Pokédex.
 
