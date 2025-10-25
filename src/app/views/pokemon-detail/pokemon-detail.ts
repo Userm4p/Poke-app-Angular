@@ -20,7 +20,9 @@ export class PokemonDetail implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private pokemonService: PokemonService,
-  ) {}
+  ) {
+    scrollTo(0, 0);
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
