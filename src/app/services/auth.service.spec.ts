@@ -8,7 +8,7 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     mockLocalStorage = {};
-    
+
     Object.defineProperty(window, 'localStorage', {
       value: {
         getItem: jest.fn((key: string) => mockLocalStorage[key] || null),
@@ -63,7 +63,7 @@ describe('AuthService', () => {
       service.login('user', 'user');
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'authUser',
-        JSON.stringify({ username: 'user', password: 'user', role: 'user' })
+        JSON.stringify({ username: 'user', password: 'user', role: 'user' }),
       );
     });
   });
@@ -72,7 +72,7 @@ describe('AuthService', () => {
     it('should clear user and localStorage', () => {
       service.login('user', 'user');
       expect(service.isLoggedIn()).toBe(true);
-      
+
       service.logout();
       expect(service.isLoggedIn()).toBe(false);
       expect(service.getUser()).toBeNull();
@@ -83,7 +83,7 @@ describe('AuthService', () => {
   describe('computed properties', () => {
     it('should return correct isLoggedIn state', () => {
       expect(service.isLoggedIn()).toBe(false);
-      
+
       service.login('user', 'user');
       expect(service.isLoggedIn()).toBe(true);
     });
@@ -91,7 +91,7 @@ describe('AuthService', () => {
     it('should return correct isAdmin state', () => {
       service.login('user', 'user');
       expect(service.isAdmin()).toBe(false);
-      
+
       service.logout();
       service.login('admin', 'admin');
       expect(service.isAdmin()).toBe(true);
@@ -100,7 +100,7 @@ describe('AuthService', () => {
     it('should return correct isUser state', () => {
       service.login('admin', 'admin');
       expect(service.isUser()).toBe(false);
-      
+
       service.logout();
       service.login('user', 'user');
       expect(service.isUser()).toBe(true);
@@ -124,7 +124,7 @@ describe('AuthService', () => {
     it('should restore user from localStorage on service creation', () => {
       const userData = { username: 'user', password: 'user', role: 'user' };
       mockLocalStorage['authUser'] = JSON.stringify(userData);
-      
+
       const newService = new AuthService();
       expect(newService.isLoggedIn()).toBe(true);
       expect(newService.getUser()).toEqual(userData);
@@ -132,7 +132,7 @@ describe('AuthService', () => {
 
     it('should handle corrupted localStorage data gracefully', () => {
       mockLocalStorage['authUser'] = 'invalid json';
-      
+
       const newService = new AuthService();
       expect(newService.isLoggedIn()).toBe(false);
       expect(newService.getUser()).toBeNull();

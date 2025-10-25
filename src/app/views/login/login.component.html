@@ -1,15 +1,15 @@
 <div class="login-container">
-  <h2>Iniciar sesión</h2>
+  <h2>Sign In</h2>
   <form (ngSubmit)="onLogin()">
     <div class="form-group">
-      <label for="user">Usuario:</label>
+      <label for="user">Username:</label>
       <input id="user" [(ngModel)]="username" name="username" required />
       @if (submitted && validationMsg().user) {
         <div class="error">{{ validationMsg().user }}</div>
       }
     </div>
     <div class="form-group">
-      <label for="password">Contraseña:</label>
+      <label for="password">Password:</label>
       <input id="password" [(ngModel)]="password" type="password" name="password" required />
       @if (submitted && validationMsg().pass) {
         <div class="error">{{ validationMsg().pass }}</div>
@@ -18,6 +18,6 @@
     @if (submitted && validationMsg().auth) {
       <div class="error">{{ validationMsg().auth }}</div>
     }
-    <button type="submit">Entrar</button>
+    <button type="submit">Sign In</button>
   </form>
 </div>

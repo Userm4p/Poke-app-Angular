@@ -1,0 +1,116 @@
+<div class="pokemon-detail-container">
+  @if (loading) {
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Loading Pokémon details...</p>
+    </div>
+  }
+
+  @if (error) {
+    <div class="error-container">
+      <h2>Error</h2>
+      <p>{{ error }}</p>
+      <button (click)="goBack()" class="back-button">Back to Pokédex</button>
+    </div>
+  }
+
+  @if (pokemon && !loading) {
+    <div class="pokemon-details">
+      <div class="pokemon-header">
+        <button (click)="goBack()" class="back-button">← Back to Pokédex</button>
+        <div class="pokemon-title">
+          <h1>{{ pokemon.name | titlecase }}</h1>
+          <span class="pokemon-id">#{{ pokemon.id.toString().padStart(3, '0') }}</span>
+        </div>
+      </div>
+
+      <div class="pokemon-main-info">
+        <div class="pokemon-image-container">
+          <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" class="pokemon-image" />
+          @if (pokemon.sprites.back_default) {
+            <div class="image-variants">
+              <img
+                [src]="pokemon.sprites.back_default"
+                [alt]="pokemon.name + ' back'"
+                class="pokemon-image-small"
+              />
+              <img
+                [src]="pokemon.sprites.front_shiny"
+                [alt]="pokemon.name + ' shiny'"
+                class="pokemon-image-small"
+              />
+            </div>
+          }
+        </div>
+
+        <div class="pokemon-basic-info">
+          <div class="types-section">
+            <h3>Types</h3>
+            <div class="types-container">
+              @for (type of pokemon.types; track type.type.name) {
+                <span class="type-badge" [style.background-color]="getTypeColor(type.type.name)">
+                  {{ type.type.name | titlecase }}
+                </span>
+              }
+            </div>
+          </div>
+
+          <div class="physical-stats">
+            <div class="stat-item">
+              <span class="stat-label">Height</span>
+              <span class="stat-value">{{ pokemon.height / 10 }}m</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Weight</span>
+              <span class="stat-value">{{ pokemon.weight / 10 }}kg</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Base Experience</span>
+              <span class="stat-value">{{ pokemon.base_experience }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      @if (pokemonSpecies) {
+        <div class="description-section">
+          <h3>Description</h3>
+          <p class="description-text">{{ getEnglishFlavorText() }}</p>
+        </div>
+      }
+
+      <div class="stats-section">
+        <h3>Base Stats</h3>
+        <div class="stats-grid">
+          @for (stat of pokemon.stats; track stat.stat.name) {
+            <div class="stat-bar-container">
+              <div class="stat-info">
+                <span class="stat-name">{{ getStatName(stat.stat.name) }}</span>
+                <span class="stat-value">{{ stat.base_stat }}</span>
+              </div>
+              <div class="stat-bar">
+                <div
+                  class="stat-fill"
+                  [style.width.%]="(stat.base_stat / 255) * 100"
+                  [style.background-color]="getTypeColor(pokemon.types[0].type.name)"
+                ></div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="abilities-section">
+        <h3>Abilities</h3>
+        <div class="abilities-grid">
+          @for (ability of pokemon.abilities; track ability.ability.name) {
+            <div class="ability-item">
+              <span class="ability-name">{{ ability.ability.name | titlecase }}</span>
+              <span *ngIf="ability.is_hidden" class="hidden-ability">(Hidden)</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

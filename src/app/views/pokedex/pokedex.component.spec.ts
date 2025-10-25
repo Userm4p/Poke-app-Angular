@@ -17,10 +17,14 @@ describe('PokedexComponent', () => {
     weight: 69,
     base_experience: 64,
     sprites: {
-      front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-      back_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
-      front_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
-      back_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png',
+      front_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+      back_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
+      front_shiny:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
+      back_shiny:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png',
     },
     types: [
       {
@@ -63,15 +67,13 @@ describe('PokedexComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [PokedexComponent, HttpClientTestingModule],
-      providers: [
-        { provide: PokemonService, useValue: pokemonServiceSpy },
-      ],
+      providers: [{ provide: PokemonService, useValue: pokemonServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PokedexComponent);
     component = fixture.componentInstance;
     pokemonService = TestBed.inject(PokemonService) as jest.Mocked<PokemonService>;
-    
+
     pokemonService.getPokemonList.mockReturnValue(of(mockPokemonListResponse));
     pokemonService.getPokemon.mockReturnValue(of(mockPokemon));
     pokemonService.searchPokemon.mockReturnValue(of([]));
@@ -99,7 +101,7 @@ describe('PokedexComponent', () => {
       expect(component.isLoading).toBe(true);
       expect(pokemonService.getPokemonList).toHaveBeenCalledWith(0, 20);
 
-     await fixture.whenStable();
+      await fixture.whenStable();
 
       expect(component.totalPokemon).toBe(1000);
       expect(component.pokemonList.length).toBe(2);
@@ -163,9 +165,9 @@ describe('PokedexComponent', () => {
     it('should not load more pokemon when already loading', () => {
       component.isLoading = true;
       const loadPokemonSpy = jest.spyOn(component, 'loadPokemon');
-      
+
       component.loadMorePokemon();
-      
+
       expect(loadPokemonSpy).not.toHaveBeenCalled();
     });
 
@@ -173,9 +175,9 @@ describe('PokedexComponent', () => {
       component.isLoading = false;
       component.currentPage = 0;
       const loadPokemonSpy = jest.spyOn(component, 'loadPokemon');
-      
+
       component.loadMorePokemon();
-      
+
       expect(component.currentPage).toBe(1);
       expect(loadPokemonSpy).toHaveBeenCalled();
     });

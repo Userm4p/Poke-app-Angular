@@ -19,6 +19,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'pokemon/:id',
+    loadComponent: () =>
+      import('./views/pokemon-detail/pokemon-detail').then((m) => m.PokemonDetail),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'types',
     loadComponent: () => import('./views/types/types.component').then((m) => m.TypesComponent),
     canActivate: [AuthGuard],

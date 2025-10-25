@@ -34,9 +34,7 @@ module.exports = {
       },
     ],
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!.*\\.mjs$|@angular|@ngrx|rxjs)',
-  ],
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|@angular|@ngrx|rxjs)'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',

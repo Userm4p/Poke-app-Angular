@@ -49,7 +49,6 @@ describe('Authentication Flow Integration', () => {
 
   describe('Complete Authentication Flow', () => {
     it('should allow user to login and access protected routes', async () => {
-
       expect(authService.isLoggedIn()).toBe(false);
 
       const loginResult = authService.login('user', 'user');
@@ -63,7 +62,6 @@ describe('Authentication Flow Integration', () => {
     });
 
     it('should allow admin to login and access admin routes', async () => {
-
       const loginResult = authService.login('admin', 'admin');
       expect(loginResult).toBe(true);
       expect(authService.isLoggedIn()).toBe(true);
@@ -72,42 +70,38 @@ describe('Authentication Flow Integration', () => {
     });
 
     it('should persist user session across page reloads', () => {
-
       authService.login('user', 'user');
       expect(authService.isLoggedIn()).toBe(true);
 
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'authUser',
-        JSON.stringify({ username: 'user', password: 'user', role: 'user' })
+        JSON.stringify({ username: 'user', password: 'user', role: 'user' }),
       );
     });
   });
 
   describe('Guard Logic Integration', () => {
     it('should have correct logic for AuthGuard conditions', () => {
-
       authService.login('user', 'user');
       expect(authService.isLoggedIn()).toBe(true);
-      
+
       authService.logout();
       expect(authService.isLoggedIn()).toBe(false);
     });
 
     it('should have correct logic for GuestGuard conditions', () => {
-
       authService.logout();
       expect(authService.isLoggedIn()).toBe(false);
-      
+
       authService.login('user', 'user');
       expect(authService.isLoggedIn()).toBe(true);
     });
 
     it('should have correct logic for AdminGuard conditions', () => {
-
       authService.login('admin', 'admin');
       expect(authService.isLoggedIn()).toBe(true);
       expect(authService.isAdmin()).toBe(true);
-      
+
       authService.logout();
       authService.login('user', 'user');
       expect(authService.isLoggedIn()).toBe(true);
@@ -123,9 +117,8 @@ describe('Authentication Flow Integration', () => {
     });
 
     it('should handle corrupted localStorage gracefully', () => {
-
       localStorage.setItem('authUser', 'invalid json');
-      
+
       const newAuthService = new AuthService();
       expect(newAuthService.isLoggedIn()).toBe(false);
       expect(newAuthService.getUser()).toBeNull();

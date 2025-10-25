@@ -21,7 +21,7 @@ Una aplicación web moderna desarrollada con Angular que permite explorar y gest
 
 ## 📋 Prerrequisitos
 
-- Node.js 18+ 
+- Node.js 18+
 - npm 9+
 - Docker (opcional)
 - Docker Compose (opcional)
@@ -31,17 +31,20 @@ Una aplicación web moderna desarrollada con Angular que permite explorar y gest
 ### Opción 1: Desarrollo Local
 
 1. **Clonar el repositorio**
+
    ```bash
    git clone <repository-url>
    cd task_manager
    ```
 
 2. **Instalar dependencias**
+
    ```bash
    npm install
    ```
 
 3. **Ejecutar en modo desarrollo**
+
    ```bash
    npm start
    ```
@@ -54,11 +57,13 @@ Una aplicación web moderna desarrollada con Angular que permite explorar y gest
 ### Opción 2: Con Docker
 
 1. **Construir la imagen**
+
    ```bash
    docker build -t task-manager .
    ```
 
 2. **Ejecutar el contenedor**
+
    ```bash
    docker run -p 80:80 task-manager
    ```
@@ -71,6 +76,7 @@ Una aplicación web moderna desarrollada con Angular que permite explorar y gest
 ### Opción 3: Con Docker Compose
 
 1. **Ejecutar con Docker Compose**
+
    ```bash
    docker-compose up -d
    ```
@@ -114,17 +120,17 @@ events {
 http {
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
-    
+
     server {
         listen 80;
         server_name localhost;
         root /usr/share/nginx/html;
         index index.html;
-        
+
         location / {
             try_files $uri $uri/ /index.html;
         }
-        
+
         location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
             expires 1y;
             add_header Cache-Control "public, immutable";
@@ -216,11 +222,13 @@ npm run fmt            # Formatear código
 ## 👥 Usuarios de Prueba
 
 ### Usuario Regular
+
 - **Usuario**: `user`
 - **Contraseña**: `user`
 - **Rol**: Usuario
 
 ### Administrador
+
 - **Usuario**: `admin`
 - **Contraseña**: `admin`
 - **Rol**: Administrador

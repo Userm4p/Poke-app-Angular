@@ -15,9 +15,9 @@ export class SidebarComponent {
   private allMenuItems = [
     { icon: '🏠', label: 'Dashboard', route: '/dashboard' },
     { icon: '📚', label: 'Pokédex', route: '/pokedex' },
-    { icon: '⚔️', label: 'Tipos y fortalezas', route: '/types' },
-    { icon: '🌍', label: 'Regiones y generaciones', route: '/regions' },
-    { icon: '💥', label: 'Movimientos', route: '/moves' },
+    { icon: '⚔️', label: 'Types & Strengths', route: '/types' },
+    { icon: '🌍', label: 'Regions & Generations', route: '/regions' },
+    { icon: '💥', label: 'Moves', route: '/moves' },
   ];
 
   menuItems = computed(() => {

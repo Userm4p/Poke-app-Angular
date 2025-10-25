@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './regions.component.css',
 })
 export class RegionsComponent {
-  title = 'Regiones y Generaciones';
+  title = 'Regions & Generations';
 
   regions = [
     {
@@ -17,7 +17,7 @@ export class RegionsComponent {
       generation: 1,
       pokemonCount: 151,
       emoji: '🏔️',
-      description: 'La región original donde comenzó la aventura Pokémon',
+      description: 'The original region where the Pokémon adventure began',
       starters: ['Bulbasaur', 'Charmander', 'Squirtle'],
       legendary: ['Articuno', 'Zapdos', 'Moltres', 'Mewtwo', 'Mew'],
     },
@@ -26,7 +26,7 @@ export class RegionsComponent {
       generation: 2,
       pokemonCount: 100,
       emoji: '🏯',
-      description: 'Una región tradicional con fuertes raíces históricas',
+      description: 'A traditional region with strong historical roots',
       starters: ['Chikorita', 'Cyndaquil', 'Totodile'],
       legendary: ['Raikou', 'Entei', 'Suicune', 'Lugia', 'Ho-Oh', 'Celebi'],
     },
@@ -35,7 +35,7 @@ export class RegionsComponent {
       generation: 3,
       pokemonCount: 135,
       emoji: '🌴',
-      description: 'Una región tropical con abundante naturaleza',
+      description: 'A tropical region with abundant nature',
       starters: ['Treecko', 'Torchic', 'Mudkip'],
       legendary: [
         'Regirock',
@@ -55,7 +55,7 @@ export class RegionsComponent {
       generation: 4,
       pokemonCount: 107,
       emoji: '❄️',
-      description: 'Una región fría con montañas nevadas',
+      description: 'A cold region with snowy mountains',
       starters: ['Turtwig', 'Chimchar', 'Piplup'],
       legendary: [
         'Uxie',
@@ -77,7 +77,7 @@ export class RegionsComponent {
       generation: 5,
       pokemonCount: 156,
       emoji: '🏙️',
-      description: 'Una región moderna y urbana',
+      description: 'A modern and urban region',
       starters: ['Snivy', 'Tepig', 'Oshawott'],
       legendary: [
         'Victini',
@@ -100,7 +100,7 @@ export class RegionsComponent {
       generation: 6,
       pokemonCount: 72,
       emoji: '🗼',
-      description: 'Una región elegante inspirada en Francia',
+      description: 'A stylish region inspired by France',
       starters: ['Chespin', 'Fennekin', 'Froakie'],
       legendary: ['Xerneas', 'Yveltal', 'Zygarde', 'Diancie', 'Hoopa', 'Volcanion'],
     },
@@ -109,7 +109,7 @@ export class RegionsComponent {
       generation: 7,
       pokemonCount: 81,
       emoji: '🏝️',
-      description: 'Un archipiélago tropical con una cultura única',
+      description: 'A tropical archipelago with a unique culture',
       starters: ['Rowlet', 'Litten', 'Popplio'],
       legendary: [
         'Tapu Koko',
@@ -137,7 +137,7 @@ export class RegionsComponent {
       generation: 8,
       pokemonCount: 89,
       emoji: '🏰',
-      description: 'Una región inspirada en Reino Unido',
+      description: 'A region inspired by the United Kingdom',
       starters: ['Grookey', 'Scorbunny', 'Sobble'],
       legendary: [
         'Zacian',

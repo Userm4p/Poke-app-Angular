@@ -29,10 +29,7 @@ module.exports = {
       statements: 80,
     },
   },
-  testMatch: [
-    '<rootDir>/src/app/**/*.spec.ts',
-    '<rootDir>/src/app/**/*.test.ts',
-  ],
+  testMatch: ['<rootDir>/src/app/**/*.spec.ts', '<rootDir>/src/app/**/*.test.ts'],
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
@@ -42,9 +39,7 @@ module.exports = {
       },
     ],
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!.*\\.mjs$|@angular|@ngrx|rxjs)',
-  ],
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|@angular|@ngrx|rxjs)'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',

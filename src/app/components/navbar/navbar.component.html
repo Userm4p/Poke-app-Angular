@@ -9,8 +9,8 @@
   </div>
   @if (isLoggedIn && userInfo()) {
     <span class="greeting">
-      Hola, <span class="username">{{ userInfo()?.username }}</span>
+      Hello, <span class="username">{{ userInfo()?.username }}</span>
     </span>
-    <button class="logout" (click)="onLogout()">Cerrar sesión</button>
+    <button class="logout" (click)="onLogout()">Log out</button>
   }
 </nav>

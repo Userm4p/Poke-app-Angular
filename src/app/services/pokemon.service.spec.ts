@@ -50,9 +50,7 @@ describe('PokemonService', () => {
         count: 1000,
         next: 'https://pokeapi.co/api/v2/pokemon?offset=40&limit=20',
         previous: 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20',
-        results: [
-          { name: 'venusaur', url: 'https://pokeapi.co/api/v2/pokemon/3/' },
-        ],
+        results: [{ name: 'venusaur', url: 'https://pokeapi.co/api/v2/pokemon/3/' }],
       };
 
       service.getPokemonList(20, 20).subscribe((response) => {
@@ -74,10 +72,14 @@ describe('PokemonService', () => {
         weight: 69,
         base_experience: 64,
         sprites: {
-          front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-          back_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
-          front_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
-          back_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png',
+          front_default:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+          back_default:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
+          front_shiny:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
+          back_shiny:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png',
         },
         types: [
           {
@@ -118,10 +120,14 @@ describe('PokemonService', () => {
         weight: 69,
         base_experience: 64,
         sprites: {
-          front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-          back_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
-          front_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
-          back_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png',
+          front_default:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+          back_default:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
+          front_shiny:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
+          back_shiny:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png',
         },
         types: [],
         stats: [],

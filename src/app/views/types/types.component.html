@@ -1,7 +1,7 @@
 <div class="types-container">
   <div class="header">
     <h1>{{ title }}</h1>
-    <p>Conoce las fortalezas y debilidades de cada tipo Pokémon</p>
+    <p>Learn the strengths and weaknesses of each Pokémon type</p>
   </div>
   <div class="types-grid">
     @for (type of pokemonTypes; track type.name) {
@@ -10,26 +10,24 @@
           <span class="type-emoji">{{ type.emoji }}</span>
           <h3>{{ type.name }}</h3>
         </div>
-
         <div class="type-info">
           <div class="strengths">
-            <h4>Efectivo contra:</h4>
+            <h4>Effective against:</h4>
             <div class="type-tags">
               @for (strong of type.strongAgainst; track strong) {
                 <span class="tag effective">{{ strong }}</span>
               } @empty {
-                <span class="tag none">Ninguno</span>
+                <span class="tag none">None</span>
               }
             </div>
           </div>
-
           <div class="weaknesses">
-            <h4>Débil contra:</h4>
+            <h4>Weak against:</h4>
             <div class="type-tags">
               @for (weak of type.weakAgainst; track weak) {
                 <span class="tag weak">{{ weak }}</span>
               } @empty {
-                <span class="tag none">Ninguno</span>
+                <span class="tag none">None</span>
               }
             </div>
           </div>
@@ -37,7 +35,7 @@
       </div>
     } @empty {
       <div class="no-types">
-        <p>No hay tipos de Pokémon disponibles ⚡</p>
+        <p>No Pokémon types available ⚡</p>
       </div>
     }
   </div>

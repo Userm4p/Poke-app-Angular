@@ -77,6 +77,8 @@
 }
 
 .greeting {
+  position: absolute;
+  left: calc(50% - 3rem);
   font-size: 1rem;
   color: var(--foreground);
 }

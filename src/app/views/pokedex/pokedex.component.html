@@ -1,14 +1,14 @@
 <div class="pokedex-container">
   <div class="header">
     <h1>{{ title }}</h1>
-    <p>Explora todos los Pokémon disponibles</p>
+    <p>Browse all available Pokémon</p>
   </div>
 
   <div class="content">
     <div class="search-section">
       <input
         type="text"
-        placeholder="Buscar Pokémon..."
+        placeholder="Search Pokémon..."
         class="search-input"
         [(ngModel)]="searchQuery"
         (keyup.enter)="searchPokemon()"
@@ -18,13 +18,13 @@
 
     @if (totalPokemon > 0) {
       <div class="stats-section">
-        <p>Mostrando {{ filteredPokemon.length }} de {{ totalPokemon }} Pokémon</p>
+        <p>Displaying {{ filteredPokemon.length }} out of {{ totalPokemon }} Pokémon</p>
       </div>
     }
     @if (filteredPokemon.length > 0) {
       <div class="pokemon-grid">
         @for (pokemon of filteredPokemon; track pokemon.id) {
-          <div class="pokemon-card">
+          <div class="pokemon-card" (click)="viewPokemonDetails(pokemon)">
             <div class="pokemon-image">
               <img
                 [src]="pokemon.sprites.front_default"
@@ -65,15 +65,15 @@
 
               <div class="pokemon-details">
                 <div class="detail-item">
-                  <span class="detail-label">Altura:</span>
+                  <span class="detail-label">Height:</span>
                   <span class="detail-value">{{ pokemon.height / 10 }}m</span>
                 </div>
                 <div class="detail-item">
-                  <span class="detail-label">Peso:</span>
+                  <span class="detail-label">Weight:</span>
                   <span class="detail-value">{{ pokemon.weight / 10 }}kg</span>
                 </div>
                 <div class="detail-item">
-                  <span class="detail-label">Exp. Base:</span>
+                  <span class="detail-label">Base Exp:</span>
                   <span class="detail-value">{{ pokemon.base_experience }}</span>
                 </div>
               </div>
@@ -81,27 +81,27 @@
           </div>
         } @empty {
           <div class="no-results">
-            <p>No hay Pokémon para mostrar 😢</p>
+            <p>No Pokémon to display 😢</p>
           </div>
         }
       </div>
     }
     @if (!isLoading && filteredPokemon.length === 0) {
       <div class="no-results">
-        <p>No se encontraron Pokémon que coincidan con tu búsqueda.</p>
+        <p>No Pokémon matching your search were found.</p>
       </div>
     }
 
     @if (!isLoading && searchQuery === '' && pokemonList.length < totalPokemon) {
       <div class="load-more-section">
-        <button class="load-more-btn" (click)="loadMorePokemon()">Cargar más Pokémon</button>
+        <button class="load-more-btn" (click)="loadMorePokemon()">Load more Pokémon</button>
       </div>
     }
 
     @if (isLoading) {
       <div class="loading-indicator">
         <div class="spinner"></div>
-        <p>Cargando Pokémon...</p>
+        <p>Loading Pokémon...</p>
       </div>
     }
   </div>

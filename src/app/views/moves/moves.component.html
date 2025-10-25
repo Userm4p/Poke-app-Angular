@@ -1,13 +1,13 @@
 <div class="moves-container">
   <div class="header">
     <h1>{{ title }}</h1>
-    <p>Explora todos los movimientos Pokémon disponibles</p>
+    <p>Browse all available Pokémon moves</p>
   </div>
 
   @if (totalMoves > 0) {
     <div class="stats-section">
       <p>
-        Mostrando {{ filteredMoves.length }} de {{ allMoves.length }} movimientos cargados ({{
+        Displaying {{ filteredMoves.length }} out of {{ allMoves.length }} loaded moves ({{
           totalMoves
         }}
         total)
@@ -35,12 +35,12 @@
 
         <div class="move-stats">
           @if (move.power) {
-            <span class="stat-label">Poder:</span>
+            <span class="stat-label">Power:</span>
             <span class="stat-value">{{ move.power }}</span>
           }
           @if (move.accuracy) {
             <div class="stat">
-              <span class="stat-label">Precisión:</span>
+              <span class="stat-label">Accuracy:</span>
               <span class="stat-value">{{ move.accuracy }}%</span>
             </div>
           }
@@ -50,7 +50,7 @@
           </div>
           @if (move.priority !== 0) {
             <div class="stat">
-              <span class="stat-label">Prioridad:</span>
+              <span class="stat-label">Priority:</span>
               <span class="stat-value">{{ move.priority > 0 ? '+' : '' }}{{ move.priority }}</span>
             </div>
           }
@@ -63,7 +63,7 @@
         <div class="move-details">
           @if (move.effect_chance) {
             <div class="detail-item">
-              <span class="detail-label">Prob. Efecto:</span>
+              <span class="detail-label">Effect Chance:</span>
               <span class="detail-value">{{ move.effect_chance }}%</span>
             </div>
           }
@@ -75,26 +75,26 @@
       </div>
     } @empty {
       @if (!isLoading) {
-        <p class="no-moves">No hay movimientos disponibles</p>
+        <p class="no-moves">No moves available</p>
       }
     }
   </div>
 
   @if (!isLoading && filteredMoves.length === 0) {
     <div class="no-results">
-      <p>No se encontraron movimientos que coincidan con tu búsqueda.</p>
+      <p>No moves matching your search were found.</p>
     </div>
   }
 
   @if (isLoading) {
     <div class="loading-indicator">
       <div class="spinner"></div>
-      <p>Cargando movimientos...</p>
+      <p>Loading moves...</p>
     </div>
   }
   @if (!isLoading) {
     <div class="load-more-section">
-      <button class="load-more-btn" (click)="loadMoreMoves()">Cargar más movimientos</button>
+      <button class="load-more-btn" (click)="loadMoreMoves()">Load more moves</button>
     </div>
   }
 </div>

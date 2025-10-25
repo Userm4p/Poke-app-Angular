@@ -54,27 +54,27 @@ describe('LoginComponent', () => {
     it('should show validation error for empty username', () => {
       component.username = '';
       component.password = 'password';
-      
+
       component.onLogin();
-      
+
       expect(component.validationMsg()).toEqual({ user: 'El usuario es requerido' });
     });
 
     it('should show validation error for empty password', () => {
       component.username = 'user';
       component.password = '';
-      
+
       component.onLogin();
-      
+
       expect(component.validationMsg()).toEqual({ pass: 'La contraseña es requerida' });
     });
 
     it('should show validation errors for both empty fields', () => {
       component.username = '';
       component.password = '';
-      
+
       component.onLogin();
-      
+
       expect(component.validationMsg()).toEqual({
         user: 'El usuario es requerido',
         pass: 'La contraseña es requerida',
@@ -84,27 +84,27 @@ describe('LoginComponent', () => {
     it('should show validation error for whitespace-only username', () => {
       component.username = '   ';
       component.password = 'password';
-      
+
       component.onLogin();
-      
+
       expect(component.validationMsg()).toEqual({ user: 'El usuario es requerido' });
     });
 
     it('should show validation error for whitespace-only password', () => {
       component.username = 'user';
       component.password = '   ';
-      
+
       component.onLogin();
-      
+
       expect(component.validationMsg()).toEqual({ pass: 'La contraseña es requerida' });
     });
 
     it('should not call auth.login when validation fails', () => {
       component.username = '';
       component.password = '';
-      
+
       component.onLogin();
-      
+
       expect(authService.login).not.toHaveBeenCalled();
     });
 
@@ -112,9 +112,9 @@ describe('LoginComponent', () => {
       component.username = 'user';
       component.password = 'password';
       authService.login.mockReturnValue(true);
-      
+
       component.onLogin();
-      
+
       expect(authService.login).toHaveBeenCalledWith('user', 'password');
     });
 
@@ -122,9 +122,9 @@ describe('LoginComponent', () => {
       component.username = 'user';
       component.password = 'password';
       authService.login.mockReturnValue(true);
-      
+
       component.onLogin();
-      
+
       expect(component.loginError).toBe(false);
       expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
     });
@@ -133,9 +133,9 @@ describe('LoginComponent', () => {
       component.username = 'user';
       component.password = 'wrongpassword';
       authService.login.mockReturnValue(false);
-      
+
       component.onLogin();
-      
+
       expect(component.loginError).toBe(true);
       expect(component.validationMsg()).toEqual({
         auth: 'Usuario o contraseña incorrectos',
@@ -148,18 +148,18 @@ describe('LoginComponent', () => {
       component.password = 'password';
       component.validationMsg = signal({ user: 'Previous error' });
       authService.login.mockReturnValue(true);
-      
+
       component.onLogin();
-      
+
       expect(component.validationMsg()).toEqual({});
     });
 
     it('should accumulate validation messages', () => {
       component.username = '';
       component.password = '';
-      
+
       component.onLogin();
-      
+
       expect(component.validationMsg()).toEqual({
         user: 'El usuario es requerido',
         pass: 'La contraseña es requerida',

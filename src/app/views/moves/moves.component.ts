@@ -13,7 +13,7 @@ import { Move, MoveListResponse } from '../../types/pokemon.types';
   styleUrl: './moves.component.css',
 })
 export class MovesComponent implements OnInit, OnDestroy {
-  title = 'Movimientos';
+  title = 'Moves';
 
   allMoves: Move[] = [];
   searchResults: Move[] = [];
@@ -45,7 +45,7 @@ export class MovesComponent implements OnInit, OnDestroy {
         this.loadMoveDetails(response.results);
       },
       error: (error) => {
-        console.error('Error cargando movimientos:', error);
+        console.error('Error loading moves:', error);
         this.isLoading = false;
       },
     });
@@ -97,9 +97,9 @@ export class MovesComponent implements OnInit, OnDestroy {
 
   getCategoryName(category: string): string {
     const categoryNames: { [key: string]: string } = {
-      physical: 'Físico',
-      special: 'Especial',
-      status: 'Estado',
+      physical: 'Physical',
+      special: 'Special',
+      status: 'Status',
     };
     return categoryNames[category] || category;
   }
@@ -112,25 +112,21 @@ export class MovesComponent implements OnInit, OnDestroy {
   }
 
   getMoveEffect(move: Move): string {
-    const spanishEffect = move.effect_entries.find((effect) => effect.language.name === 'es');
-
-    if (spanishEffect) {
-      return spanishEffect.effect.replace(
-        /\$effect_chance/g,
-        move.effect_chance?.toString() || '0',
-      );
-    }
-
     const englishEffect = move.effect_entries.find((effect) => effect.language.name === 'en');
-
     if (englishEffect) {
       return englishEffect.effect.replace(
         /\$effect_chance/g,
         move.effect_chance?.toString() || '0',
       );
     }
-
-    return 'Sin descripción disponible';
+    const spanishEffect = move.effect_entries.find((effect) => effect.language.name === 'es');
+    if (spanishEffect) {
+      return spanishEffect.effect.replace(
+        /\$effect_chance/g,
+        move.effect_chance?.toString() || '0',
+      );
+    }
+    return 'No description available';
   }
 
   getMoveEmoji(type: string): string {

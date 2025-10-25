@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { PokemonService } from '../../services/pokemon.service';
 import { Pokemon, PokemonListResponse } from '../../types/pokemon.types';
@@ -25,7 +26,10 @@ export class PokedexComponent implements OnInit {
 
   loadingStates: { [key: number]: boolean } = {};
 
-  constructor(private pokemonService: PokemonService) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.loadPokemon();
@@ -39,7 +43,7 @@ export class PokedexComponent implements OnInit {
         this.loadPokemonDetails(response.results);
       },
       error: (error) => {
-        console.error('Error cargando Pokémon:', error);
+        console.error('Error loading Pokémon:', error);
         this.isLoading = false;
       },
     });
@@ -86,7 +90,7 @@ export class PokedexComponent implements OnInit {
         });
       },
       error: (error) => {
-        console.error('Error buscando Pokémon:', error);
+        console.error('Error searching Pokémon:', error);
         this.isLoading = false;
       },
     });
@@ -126,16 +130,20 @@ export class PokedexComponent implements OnInit {
   getStatName(statName: string): string {
     const statNames: { [key: string]: string } = {
       hp: 'HP',
-      attack: 'Ataque',
-      defense: 'Defensa',
-      'special-attack': 'Ataque Esp.',
-      'special-defense': 'Defensa Esp.',
-      speed: 'Velocidad',
+      attack: 'Attack',
+      defense: 'Defense',
+      'special-attack': 'Sp. Attack',
+      'special-defense': 'Sp. Defense',
+      speed: 'Speed',
     };
     return statNames[statName] || statName;
   }
 
   formatPokemonName(name: string): string {
     return name.charAt(0).toUpperCase() + name.slice(1);
+  }
+
+  viewPokemonDetails(pokemon: Pokemon) {
+    this.router.navigate(['/pokemon', pokemon.id]);
   }
 }
