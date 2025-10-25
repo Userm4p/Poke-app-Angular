@@ -78,7 +78,7 @@ Una aplicación web moderna desarrollada con Angular que permite explorar y gest
 1. **Ejecutar con Docker Compose**
 
    ```bash
-   docker-compose up -d
+   docker-compose up --build -d 
    ```
 
 2. **Abrir en el navegador**
