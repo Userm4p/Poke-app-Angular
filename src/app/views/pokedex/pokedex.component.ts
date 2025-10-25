@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
-import { PokemonService, Pokemon, PokemonListResponse } from '../../services/pokemon.service';
+import { PokemonService } from '../../services/pokemon.service';
+import { Pokemon, PokemonListResponse } from '../../types/pokemon.types';
 
 @Component({
   selector: 'app-pokedex',

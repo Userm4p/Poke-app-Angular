@@ -1,0 +1,40 @@
+module.exports = {
+  collectCoverageFrom: [
+    'src/app/**/*.{ts,js}',
+    '!src/app/**/*.spec.{ts,js}',
+    '!src/app/**/*.test.{ts,js}',
+    '!src/app/**/*.module.{ts,js}',
+    '!src/app/**/index.{ts,js}',
+    '!src/app/**/*.interface.{ts,js}',
+    '!src/app/**/*.type.{ts,js}',
+    '!src/app/**/*.enum.{ts,js}',
+    '!src/app/**/*.constant.{ts,js}',
+    '!src/app/**/*.config.{ts,js}',
+    '!src/app/**/*.stub.{ts,js}',
+    '!src/app/**/*.mock.{ts,js}',
+    '!src/app/**/integration/**',
+    '!src/setup-jest.ts',
+  ],
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'html', 'json'],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+    'src/app/services/': {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
+    },
+    'src/app/guards/': {
+      branches: 85,
+      functions: 85,
+      lines: 85,
+      statements: 85,
+    },
+  },
+};

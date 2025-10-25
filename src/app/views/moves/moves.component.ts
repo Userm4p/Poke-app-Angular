@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
-import { PokemonService, Move, MoveListResponse } from '../../services/pokemon.service';
+import { PokemonService } from '../../services/pokemon.service';
+import { Move, MoveListResponse } from '../../types/pokemon.types';
 
 @Component({
   selector: 'app-moves',

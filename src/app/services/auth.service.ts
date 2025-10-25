@@ -1,10 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-
-interface UserCred {
-  username: string;
-  password: string;
-  role: 'admin' | 'user';
-}
+import { UserCred } from '../types/auth.types';
 
 const USERS: UserCred[] = [
   { username: 'user', password: 'user', role: 'user' },
