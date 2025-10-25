@@ -1,0 +1,33 @@
+<div class="types-container">
+  <div class="header">
+    <h1>{{ title }}</h1>
+    <p>Conoce las fortalezas y debilidades de cada tipo Pokémon</p>
+  </div>
+
+  <div class="types-grid">
+    <div class="type-card" *ngFor="let type of pokemonTypes">
+      <div class="type-header">
+        <span class="type-emoji">{{ type.emoji }}</span>
+        <h3>{{ type.name }}</h3>
+      </div>
+
+      <div class="type-info">
+        <div class="strengths">
+          <h4>Efectivo contra:</h4>
+          <div class="type-tags">
+            <span class="tag effective" *ngFor="let strong of type.strongAgainst">{{
+              strong
+            }}</span>
+          </div>
+        </div>
+
+        <div class="weaknesses">
+          <h4>Débil contra:</h4>
+          <div class="type-tags">
+            <span class="tag weak" *ngFor="let weak of type.weakAgainst">{{ weak }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

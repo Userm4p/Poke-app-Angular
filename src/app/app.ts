@@ -12,7 +12,7 @@ import { AuthService } from './services/auth.service';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('task_manager');
+  protected readonly title = signal('Poke App');
   protected readonly theme = signal(this.getStoredTheme());
 
   constructor(

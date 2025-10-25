@@ -1,0 +1,54 @@
+<div class="moves-container">
+  <div class="header">
+    <h1>{{ title }}</h1>
+    <p>Explora todos los movimientos Pokémon disponibles</p>
+  </div>
+
+  <div class="filters">
+    <div class="filter-group">
+      <label for="type-filter">Tipo:</label>
+      <select id="type-filter" [(ngModel)]="selectedType" class="filter-select">
+        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="category-filter">Categoría:</label>
+      <select id="category-filter" [(ngModel)]="selectedCategory" class="filter-select">
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="moves-grid">
+    <div class="move-card" *ngFor="let move of filteredMoves">
+      <div class="move-header">
+        <span class="move-emoji">{{ move.emoji }}</span>
+        <div class="move-info">
+          <h3>{{ move.name }}</h3>
+          <div class="move-meta">
+            <span class="move-type">{{ move.type }}</span>
+            <span class="move-category">{{ move.category }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="move-stats">
+        <div class="stat">
+          <span class="stat-label">Poder:</span>
+          <span class="stat-value">{{ move.power }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Precisión:</span>
+          <span class="stat-value">{{ move.accuracy }}%</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">PP:</span>
+          <span class="stat-value">{{ move.pp }}</span>
+        </div>
+      </div>
+
+      <p class="move-description">{{ move.description }}</p>
+    </div>
+  </div>
+</div>

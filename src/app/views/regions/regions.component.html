@@ -1,0 +1,45 @@
+<div class="regions-container">
+  <div class="header">
+    <h1>{{ title }}</h1>
+    <p>Explora todas las regiones Pokémon y sus generaciones</p>
+  </div>
+
+  <div class="regions-grid">
+    <div class="region-card" *ngFor="let region of regions">
+      <div class="region-header">
+        <span class="region-emoji">{{ region.emoji }}</span>
+        <div class="region-info">
+          <h3>{{ region.name }}</h3>
+          <span class="generation">Generación {{ region.generation }}</span>
+        </div>
+      </div>
+
+      <div class="region-stats">
+        <div class="stat">
+          <span class="stat-label">Pokémon:</span>
+          <span class="stat-value">{{ region.pokemonCount }}</span>
+        </div>
+      </div>
+
+      <p class="region-description">{{ region.description }}</p>
+
+      <div class="region-details">
+        <div class="starters">
+          <h4>Iniciales:</h4>
+          <div class="pokemon-list">
+            <span class="pokemon-name" *ngFor="let starter of region.starters">{{ starter }}</span>
+          </div>
+        </div>
+
+        <div class="legendaries">
+          <h4>Legendarios:</h4>
+          <div class="pokemon-list">
+            <span class="pokemon-name legendary" *ngFor="let legendary of region.legendary">{{
+              legendary
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
