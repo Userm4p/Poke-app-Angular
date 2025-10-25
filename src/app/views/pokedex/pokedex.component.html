@@ -6,17 +6,106 @@
 
   <div class="content">
     <div class="search-section">
-      <input type="text" placeholder="Buscar Pokémon..." class="search-input" />
-      <button class="search-btn">🔍</button>
+      <input
+        type="text"
+        placeholder="Buscar Pokémon..."
+        class="search-input"
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="searchPokemon()"
+      />
+      <button class="search-btn" (click)="searchPokemon()">🔍</button>
     </div>
 
-    <div class="pokemon-grid">
-      <!-- Aquí se mostrarán los Pokémon -->
-      <div class="pokemon-card">
-        <div class="pokemon-image">🦎</div>
-        <h3>Pokémon #001</h3>
-        <p>Tipo: Planta</p>
+    @if (totalPokemon > 0) {
+      <div class="stats-section">
+        <p>Mostrando {{ filteredPokemon.length }} de {{ totalPokemon }} Pokémon</p>
       </div>
-    </div>
+    }
+    @if (filteredPokemon.length > 0) {
+      <div class="pokemon-grid">
+        @for (pokemon of filteredPokemon; track pokemon.id) {
+          <div class="pokemon-card">
+            <div class="pokemon-image">
+              <img
+                [src]="pokemon.sprites.front_default"
+                [alt]="pokemon.name"
+                (error)="
+                  $event.target.src = 'https://via.placeholder.com/150x150/68A090/FFFFFF?text=?'
+                "
+              />
+            </div>
+
+            <div class="pokemon-info">
+              <h3>{{ formatPokemonName(pokemon.name) }}</h3>
+              <p class="pokemon-id">#{{ pokemon.id.toString().padStart(3, '0') }}</p>
+
+              <div class="pokemon-types">
+                @for (type of pokemon.types; track type.type.name) {
+                  <span class="type-badge" [style.background-color]="getTypeColor(type.type.name)">
+                    {{ formatPokemonName(type.type.name) }}
+                  </span>
+                }
+              </div>
+
+              <div class="pokemon-stats">
+                @for (stat of pokemon.stats; track stat.stat.name) {
+                  <div class="stat-bar">
+                    <span class="stat-name">{{ getStatName(stat.stat.name) }}:</span>
+                    <div class="stat-progress">
+                      <div
+                        class="stat-fill"
+                        [style.width.%]="(stat.base_stat / 255) * 100"
+                        [style.background-color]="getTypeColor(pokemon.types[0].type.name)"
+                      ></div>
+                      <span class="stat-value">{{ stat.base_stat }}</span>
+                    </div>
+                  </div>
+                }
+              </div>
+
+              <div class="pokemon-details">
+                <div class="detail-item">
+                  <span class="detail-label">Altura:</span>
+                  <span class="detail-value">{{ pokemon.height / 10 }}m</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Peso:</span>
+                  <span class="detail-value">{{ pokemon.weight / 10 }}kg</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Exp. Base:</span>
+                  <span class="detail-value">{{ pokemon.base_experience }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <div class="no-results">
+            <p>No hay Pokémon para mostrar 😢</p>
+          </div>
+        }
+      </div>
+    }
+    @if (!isLoading && filteredPokemon.length === 0) {
+      <div class="no-results">
+        <p>No se encontraron Pokémon que coincidan con tu búsqueda.</p>
+      </div>
+    }
+
+    @if (!isLoading && searchQuery === '' && pokemonList.length < totalPokemon) {
+      <div class="load-more-section">
+        <button class="load-more-btn" (click)="loadMorePokemon()">Cargar más Pokémon</button>
+      </div>
+    }
+
+    
+
+    @if (isLoading) {
+      <div class="loading-indicator">
+        <div class="spinner"></div>
+        <p>Cargando Pokémon...</p>
+      </div>
+    }
+
   </div>
 </div>

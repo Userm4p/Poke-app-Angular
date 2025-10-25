@@ -4,51 +4,94 @@
     <p>Explora todos los movimientos Pokémon disponibles</p>
   </div>
 
-  <div class="filters">
-    <div class="filter-group">
-      <label for="type-filter">Tipo:</label>
-      <select id="type-filter" [(ngModel)]="selectedType" class="filter-select">
-        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
-      </select>
+  @if (totalMoves > 0) {
+    <div class="stats-section">
+      <p>
+        Mostrando {{ filteredMoves.length }} de {{ allMoves.length }} movimientos cargados ({{
+          totalMoves
+        }}
+        total)
+      </p>
     </div>
+  }
 
-    <div class="filter-group">
-      <label for="category-filter">Categoría:</label>
-      <select id="category-filter" [(ngModel)]="selectedCategory" class="filter-select">
-        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-      </select>
+  @if (isLoading) {
+    <div class="loading-indicator">
+      <div class="spinner"></div>
+      <p>Cargando movimientos...</p>
     </div>
-  </div>
+  }
 
   <div class="moves-grid">
-    <div class="move-card" *ngFor="let move of filteredMoves">
-      <div class="move-header">
-        <span class="move-emoji">{{ move.emoji }}</span>
-        <div class="move-info">
-          <h3>{{ move.name }}</h3>
-          <div class="move-meta">
-            <span class="move-type">{{ move.type }}</span>
-            <span class="move-category">{{ move.category }}</span>
+    @for (move of filteredMoves; track move.id) {
+      <div class="move-card">
+        <div class="move-header">
+          <span class="move-emoji">{{ getMoveEmoji(move.type.name) }}</span>
+          <div class="move-info">
+            <h3>{{ formatMoveName(move.name) }}</h3>
+            <div class="move-meta">
+              <span class="move-type" [style.background-color]="getTypeColor(move.type.name)">
+                {{ formatMoveName(move.type.name) }}
+              </span>
+              <span class="move-category">
+                {{ getCategoryName(move.damage_class.name) }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="move-stats">
+          @if (move.power) {
+            <span class="stat-label">Poder:</span>
+            <span class="stat-value">{{ move.power }}</span>
+          }
+          @if (move.accuracy) {
+            <div class="stat">
+              <span class="stat-label">Precisión:</span>
+              <span class="stat-value">{{ move.accuracy }}%</span>
+            </div>
+          }
+          <div class="stat">
+            <span class="stat-label">PP:</span>
+            <span class="stat-value">{{ move.pp }}</span>
+          </div>
+          @if (move.priority !== 0) {
+            <div class="stat">
+              <span class="stat-label">Prioridad:</span>
+              <span class="stat-value">{{ move.priority > 0 ? '+' : '' }}{{ move.priority }}</span>
+            </div>
+          }
+        </div>
+
+        <div class="move-effect">
+          <p class="move-description">{{ getMoveEffect(move) }}</p>
+        </div>
+
+        <div class="move-details">
+          @if (move.effect_chance) {
+            <div class="detail-item">
+              <span class="detail-label">Prob. Efecto:</span>
+              <span class="detail-value">{{ move.effect_chance }}%</span>
+            </div>
+          }
+          <div class="detail-item">
+            <span class="detail-label">ID:</span>
+            <span class="detail-value">#{{ move.id }}</span>
           </div>
         </div>
       </div>
+    } @empty {
+      <p class="no-moves">No hay movimientos disponibles</p>
+    }
+  </div>
 
-      <div class="move-stats">
-        <div class="stat">
-          <span class="stat-label">Poder:</span>
-          <span class="stat-value">{{ move.power }}</span>
-        </div>
-        <div class="stat">
-          <span class="stat-label">Precisión:</span>
-          <span class="stat-value">{{ move.accuracy }}%</span>
-        </div>
-        <div class="stat">
-          <span class="stat-label">PP:</span>
-          <span class="stat-value">{{ move.pp }}</span>
-        </div>
-      </div>
-
-      <p class="move-description">{{ move.description }}</p>
+  @if (!isLoading && filteredMoves.length === 0) {
+    <div class="no-results">
+      <p>No se encontraron movimientos que coincidan con tu búsqueda.</p>
     </div>
+  }
+
+  <div class="load-more-section">
+    <button class="load-more-btn" (click)="loadMoreMoves()">Cargar más movimientos</button>
   </div>
 </div>

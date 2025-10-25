@@ -5,41 +5,53 @@
   </div>
 
   <div class="regions-grid">
-    <div class="region-card" *ngFor="let region of regions">
-      <div class="region-header">
-        <span class="region-emoji">{{ region.emoji }}</span>
-        <div class="region-info">
-          <h3>{{ region.name }}</h3>
-          <span class="generation">Generación {{ region.generation }}</span>
-        </div>
-      </div>
-
-      <div class="region-stats">
-        <div class="stat">
-          <span class="stat-label">Pokémon:</span>
-          <span class="stat-value">{{ region.pokemonCount }}</span>
-        </div>
-      </div>
-
-      <p class="region-description">{{ region.description }}</p>
-
-      <div class="region-details">
-        <div class="starters">
-          <h4>Iniciales:</h4>
-          <div class="pokemon-list">
-            <span class="pokemon-name" *ngFor="let starter of region.starters">{{ starter }}</span>
+    @for (region of regions; track region.name) {
+      <div class="region-card">
+        <div class="region-header">
+          <span class="region-emoji">{{ region.emoji }}</span>
+          <div class="region-info">
+            <h3>{{ region.name }}</h3>
+            <span class="generation">Generación {{ region.generation }}</span>
           </div>
         </div>
 
-        <div class="legendaries">
-          <h4>Legendarios:</h4>
-          <div class="pokemon-list">
-            <span class="pokemon-name legendary" *ngFor="let legendary of region.legendary">{{
-              legendary
-            }}</span>
+        <div class="region-stats">
+          <div class="stat">
+            <span class="stat-label">Pokémon:</span>
+            <span class="stat-value">{{ region.pokemonCount }}</span>
+          </div>
+        </div>
+
+        <p class="region-description">{{ region.description }}</p>
+
+        <div class="region-details">
+          <div class="starters">
+            <h4>Iniciales:</h4>
+            <div class="pokemon-list">
+              @for (starter of region.starters; track starter) {
+                <span class="pokemon-name">{{ starter }}</span>
+              } @empty {
+                <span class="no-starters">Sin iniciales</span>
+              }
+            </div>
+          </div>
+
+          <div class="legendaries">
+            <h4>Legendarios:</h4>
+            <div class="pokemon-list">
+              @for (legendary of region.legendary; track legendary) {
+                <span class="pokemon-name legendary">{{ legendary }}</span>
+              } @empty {
+                <span class="no-legendaries">Sin legendarios</span>
+              }
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    } @empty {
+      <div class="no-regions">
+        <p>No hay regiones disponibles 🌍</p>
+      </div>
+    }
   </div>
 </div>
