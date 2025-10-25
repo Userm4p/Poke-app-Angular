@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { lastValueFrom } from 'rxjs';
 import { PokemonService, Pokemon, PokemonListResponse } from '../../services/pokemon.service';
 
 @Component({
@@ -48,7 +49,7 @@ export class PokedexComponent implements OnInit {
       const pokemonId = pokemon.url.split('/').slice(-2, -1)[0];
       this.loadingStates[parseInt(pokemonId)] = true;
 
-      return this.pokemonService.getPokemon(pokemonId).toPromise();
+      return lastValueFrom(this.pokemonService.getPokemon(pokemonId));
     });
 
     Promise.all(promises).then((pokemonDetails) => {
@@ -75,7 +76,7 @@ export class PokedexComponent implements OnInit {
     this.pokemonService.searchPokemon(this.searchQuery).subscribe({
       next: (pokemonResults) => {
         const promises = pokemonResults.map((pokemon) => {
-          return this.pokemonService.getPokemon(pokemon.name).toPromise();
+          return lastValueFrom(this.pokemonService.getPokemon(pokemon.name));
         });
 
         Promise.all(promises).then((pokemonDetails) => {

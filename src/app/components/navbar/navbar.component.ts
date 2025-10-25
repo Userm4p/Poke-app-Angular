@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,11 +14,9 @@ export class NavbarComponent {
   @Output() logout = new EventEmitter<void>();
   @Output() toggleMenu = new EventEmitter<void>();
 
-  userInfo;
+  userInfo = computed(() => this.authService.getUser());
 
-  constructor(private authService: AuthService) {
-    this.userInfo = this.authService.getUser();
-  }
+  constructor(private authService: AuthService) {}
 
   onLogout() {
     this.logout.emit();

@@ -15,13 +15,6 @@
     </div>
   }
 
-  @if (isLoading) {
-    <div class="loading-indicator">
-      <div class="spinner"></div>
-      <p>Cargando movimientos...</p>
-    </div>
-  }
-
   <div class="moves-grid">
     @for (move of filteredMoves; track move.id) {
       <div class="move-card">
@@ -81,7 +74,9 @@
         </div>
       </div>
     } @empty {
-      <p class="no-moves">No hay movimientos disponibles</p>
+      @if (!isLoading) {
+        <p class="no-moves">No hay movimientos disponibles</p>
+      }
     }
   </div>
 
@@ -91,7 +86,15 @@
     </div>
   }
 
-  <div class="load-more-section">
-    <button class="load-more-btn" (click)="loadMoreMoves()">Cargar más movimientos</button>
-  </div>
+  @if (isLoading) {
+    <div class="loading-indicator">
+      <div class="spinner"></div>
+      <p>Cargando movimientos...</p>
+    </div>
+  }
+  @if (!isLoading) {
+    <div class="load-more-section">
+      <button class="load-more-btn" (click)="loadMoreMoves()">Cargar más movimientos</button>
+    </div>
+  }
 </div>

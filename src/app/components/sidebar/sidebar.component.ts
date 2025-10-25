@@ -32,5 +32,6 @@ export class SidebarComponent {
   navigateTo(route: string) {
     this.router.navigate([route]);
     this.isOpen.set(false);
+    scrollTo(0, 0);
   }
 }

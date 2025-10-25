@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { lastValueFrom } from 'rxjs';
 import { PokemonService, Move, MoveListResponse } from '../../services/pokemon.service';
 
 @Component({
@@ -52,7 +53,7 @@ export class MovesComponent implements OnInit, OnDestroy {
   loadMoveDetails(moveResults: Array<{ name: string; url: string }>) {
     const promises = moveResults.map((move) => {
       const moveId = move.url.split('/').slice(-2, -1)[0];
-      return this.pokemonService.getMove(moveId).toPromise();
+      return lastValueFrom(this.pokemonService.getMove(moveId));
     });
 
     Promise.all(promises).then((moveDetails) => {

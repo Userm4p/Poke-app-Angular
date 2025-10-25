@@ -7,9 +7,9 @@
     }
     <div class="logo">Poke <span class="accent">App</span></div>
   </div>
-  @if (isLoggedIn && userInfo) {
+  @if (isLoggedIn && userInfo()) {
     <span class="greeting">
-      Hola, <span class="username">{{ userInfo.username }}</span>
+      Hola, <span class="username">{{ userInfo()?.username }}</span>
     </span>
     <button class="logout" (click)="onLogout()">Cerrar sesión</button>
   }
